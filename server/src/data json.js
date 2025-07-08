@@ -33,3 +33,15 @@ D:\TechnoProject\technoweit-mgmt-panel\server>npm start
   "fees": 45000,
   "technology": ["HTML", "CSS", "JavaScript", "Node.js", "React", "MongoDB"]
 }
+
+//updatestudent
+{
+  "studentId":"686c0816745e3c8aa20f385c",
+  "updateData":{
+    "name": "Kishor Kolhe",
+    "email": "Kishor.kolhe@faculty.com",
+    "phone": "9876543210",
+    "course": "Computer Science",
+    "address": "Jalgoan, Maharashtra"
+  }
+}

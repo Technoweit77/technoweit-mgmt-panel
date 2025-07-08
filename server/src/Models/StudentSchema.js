@@ -12,6 +12,10 @@ const StudentSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  dateofbirth: {
+    type: Date,
+    required: true
+  },
   college: {
     type: String,
     required: true

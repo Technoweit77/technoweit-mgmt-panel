@@ -8,4 +8,4 @@ userRouter.get("/fetchallusers",fetchAllUsers);
 userRouter.put("/updateuser",updateUser);
 userRouter.delete("/deleteuser",deleteUser);
 
-export {userRouter};
+export default userRouter;
