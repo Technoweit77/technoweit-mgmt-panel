@@ -13,8 +13,8 @@ const StudentSchema = new mongoose.Schema({
     required: true
   },
   dateofbirth: {
-    type: Date,
-    required: true
+    type: String,
+   
   },
   college: {
     type: String,
