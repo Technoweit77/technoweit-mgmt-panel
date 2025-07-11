@@ -52,7 +52,12 @@ const StudentSchema = new mongoose.Schema({
             validator: v => /^\d{10}$/.test(v),
             message: 'Phone number must be 10 digits'
         }
-  }
+  },
+  imageUrl: {
+  type: String,
+  
+}
+  
 });
 
 export const Student = mongoose.model('Student', StudentSchema);

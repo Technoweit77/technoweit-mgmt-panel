@@ -14,6 +14,7 @@ import Login from './pages/auth/Login';
 import Project from './pages/Projects';
 import Studentlist from './pages/Studentlist';
 import Users from './pages/Users';
+import StudentDetails from './pages/StudentDetails';
 
 
 // import path from 'path';
@@ -36,6 +37,7 @@ const App = ({ toggleTheme, themeMode }) => {
     {path:"/projects",element:<Project/>},
     {path:"/studentlist",element:<Studentlist/>},
     {path:"/users",element:<Users/>},
+    {path:"/studentdetails",element:<StudentDetails/>}
   ];
 
   //Define your sidebar Menus
