@@ -13,8 +13,8 @@ const StudentSchema = new mongoose.Schema({
     required: true
   },
   dateofbirth: {
-    type: Date,
-    required: true
+    type: String,
+
   },
   college: {
     type: String,
@@ -41,18 +41,22 @@ const StudentSchema = new mongoose.Schema({
     type: String,
     required: true,
     validate: {
-            validator: v => /^\d{10}$/.test(v),
-            message: 'Phone number must be 10 digits'
-        }
+      validator: v => /^\d{10}$/.test(v),
+      message: 'Phone number must be 10 digits'
+    }
   },
   parentPhoneNo: {
     type: String,
     required: true,
-   validate: {
-            validator: v => /^\d{10}$/.test(v),
-            message: 'Phone number must be 10 digits'
-        }
+    validate: {
+      validator: v => /^\d{10}$/.test(v),
+      message: 'Phone number must be 10 digits'
+    }
+  },
+  imageUrl: {
+    type: String
   }
+
 });
 
 export const Student = mongoose.model('Student', StudentSchema);

@@ -45,3 +45,50 @@ D:\TechnoProject\technoweit-mgmt-panel\server>npm start
     "address": "Jalgoan, Maharashtra"
   }
 }
+//enrollstudent 
+{
+    "data": {
+        "student": "64f3b1d2c6e8d9a1e8a1a1b1",
+        "course": "64f3b2a3c9d1e9b2d9b2b2c2",
+        "joinDate": "2025-07-11T10:00:00.000Z",
+        "totalFee": 15000,
+        "paidFees": 8000,
+        "status": "ongoing",
+        "_id": "6870a4dee9345fce6ea15263",
+        "__v": 0
+    },
+    "message": "student enroll sucessfully"
+}
+//delete
+{
+  "studentId": "6870a4dee9345fce6ea15263"
+}
+//update enrollment
+{
+  "studentId":"6870a4dee9345fce6ea15263",
+   "status":"completed",
+   "paidFees":15000
+}
+//craete receipt
+{
+    "data": {
+        "enrollment": "6870a4dee9345fce6ea15263",
+        "receiptNo": "RCPT-2025-001",
+        "amountPaid": 5000,
+        "paymentDate": "2025-07-11T10:30:00.000Z",
+        "paymentMode": "upi",
+        "remarks": "First installment paid via UPI",
+        "_id": "6870bf721aa9c181382866c4",
+        "__v": 0
+    },
+    "message": "fees receipt created"
+}
+//delete
+{
+    "enrollmentId":"6870bf721aa9c181382866c4"
+}
+//update
+{
+    "data": null,
+    "message": "Enrollment Student updated successfully"
+}

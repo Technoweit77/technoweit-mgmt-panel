@@ -39,10 +39,15 @@ const CustomTable = ({ data = [],
         enableFullScreenToggle: true,
         enableColumnActions: false,
         enableSorting: true,
+        enableSelection: true,
         enableColumnVisibilityToggle: false,
         enableDensityToggle: true,
         defaultDisplayColumn: { minSize: 40 },
         initialState: {
+            pagination: {
+                pageSize: 50,
+                pageIndex: 0
+            },
             density: "compact",
             showColumnFilters: false,
             showGlobalFilter: true,

@@ -30,7 +30,7 @@ export const AlertProvider = ({ children }) => {
         open={alertState.open}
         autoHideDuration={alertState.timer} // Use the timer from state
         onClose={hideAlert}
-        anchorOrigin={{ vertical:"bottom", horizontal: "center" }}
+        anchorOrigin={{ vertical:"bottom", horizontal: "left" }}
       >
         <Alert onClose={hideAlert} severity={alertState.severity}>
           {alertState.message}
