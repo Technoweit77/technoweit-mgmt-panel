@@ -64,21 +64,41 @@ const StudentDetails = () => {
       },
     }}
         >
-          <Typography variant="body1">First Name: {studentData.firstName}</Typography>
-          <Typography variant="body1">Middle Name: {studentData.middleName}</Typography>
-          <Typography variant="body1">Last Name: {studentData.lastName}</Typography>
-          <Typography variant="body1">Date of Birth: {studentData.dateofbirth}</Typography>
-          <Typography variant="body1">College: {studentData.college}</Typography>
-          <Typography variant="body1">University: {studentData.university}</Typography>
-          <Typography variant="body1">Degree/Course: {studentData.degreeCourse}</Typography>
-          <Typography variant="body1">Academic Year: {studentData.academicYear}</Typography>
-          <Typography variant="body1">Branch: {studentData.Branch}</Typography>
-          <Typography variant="body1">Phone No: {studentData.phoneNo}</Typography>
-          <Typography variant="body1">Parent Phone No: {studentData.parentPhoneNo}</Typography>
+          <Typography variant="body1" fontSize={18}>First Name: {studentData.firstName}</Typography>
+          <Typography variant="body1" fontSize={18}>Middle Name: {studentData.middleName}</Typography>
+          <Typography variant="body1" fontSize={18}>Last Name: {studentData.lastName}</Typography>
+          <Typography variant="body1" fontSize={18}>Date of Birth: {studentData.dateofbirth}</Typography>
+          <Typography variant="body1" fontSize={18}>College: {studentData.college}</Typography>
+          <Typography variant="body1" fontSize={18}>University: {studentData.university}</Typography>
+          <Typography variant="body1" fontSize={18}>Degree/Course: {studentData.degreeCourse}</Typography>
+          <Typography variant="body1" fontSize={18}>Academic Year: {studentData.academicYear}</Typography>
+          <Typography variant="body1" fontSize={18}>Branch: {studentData.Branch}</Typography>
+          <Typography variant="body1" fontSize={18}>Phone No: {studentData.phoneNo}</Typography>
+          <Typography variant="body1" fontSize={18}>Parent Phone No: {studentData.parentPhoneNo}</Typography>
+        </Box>
+
+        {/* Right Info Box */}
+        <Box
+          sx={{
+      borderRadius: 3,
+      boxShadow: 4,
+      padding: 3,
+      width: 500,
+      backgroundColor: '#f9f9f9',
+      transition: '0.3s',
+      '&:hover': {
+        boxShadow: 6,
+        backgroundColor: '#f1f1f1',
+      },
+    }}
+        >
+          <Typography variant="body1" fontSize={18}>Course: {}</Typography>
+          <Typography variant="body1" fontSize={18}>Total Fees: {}</Typography>
+          <Typography variant="body1" fontSize={18}>Paid Fees: {}</Typography>
+          <Typography variant="body1" fontSize={18}>Remaining Fees: {}</Typography>
         </Box>
       </Box>
     </>
   );
-};
-
+}
 export default StudentDetails;
