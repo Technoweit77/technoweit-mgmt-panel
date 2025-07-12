@@ -4,9 +4,13 @@ import { Student } from '../Models/StudentSchema.js';
 let createStudent = async (req, res) => {
   try {
     const studentData = req.body;
-    const newStudent = await Student.create(studentData);
+    let filepath = req.file ? req.file.path.replace("\\", "/") : null
+    let newStudent = await Student.create({ ...req.body, imageUrl: filepath })
+    // const newStudent = await Student.create(studentData);
     res.status(200).json({
       data: newStudent,
+
+
       message: 'Student created successfully'
 
     });
