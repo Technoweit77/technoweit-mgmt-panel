@@ -9,6 +9,7 @@ import courseRouter from "./src/Routes/CourseRoutes.js";
 import userRouter from "./src/Routes/UserRoutes.js";
 import enrollmentRouter from "./src/Routes/EnrollmentRoutes.js";
 import feereceiptRouter from "./src/Routes/FeereceiptRoutes.js";
+import { counterrouter } from "./src/Routes/DashboardRoutes.js";
 
 let Server = express();
 
@@ -30,6 +31,7 @@ Server.use("/api",userRouter)
 Server.use("/Uploadimages",express.static("Uploadimages"))
 Server.use("/api",enrollmentRouter)
 Server.use("/api",feereceiptRouter)
+Server.use("/api",counterrouter)
 Server.listen(5000, () => {
     console.log("Server is running on port 5000");
 });
