@@ -27,6 +27,7 @@ Server.use("/api",studentRouter)
 Server.use("/api",projectrouter)
 Server.use("/api",courseRouter)
 Server.use("/api",userRouter)
+Server.use("/Uploadimages",express.static("Uploadimages"))
 Server.use("/api",enrollmentRouter)
 Server.use("/api",feereceiptRouter)
 Server.listen(5000, () => {
