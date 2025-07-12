@@ -37,7 +37,7 @@ const Addstudent = () => {
     <>
       <Box sx={{
         display: "flex",
-        height:650,
+        height:600,
         //   mt: 10,
         //   ml: 40,
         // width: 600,
@@ -48,7 +48,7 @@ const Addstudent = () => {
         position:'absolute',
         top:"53%",
         left:"50%",
-        width:"50%",
+        width:"45%",
         transform:"translate(-50%,-50%)"
       }}>
         <Box
@@ -98,7 +98,7 @@ const Addstudent = () => {
               />
             </Grid>
 
-                <Grid item size={{ md: 6 }}>
+                {/* <Grid item size={{ md: 6 }}>
                   <TextField
                     fullWidth
                     label="Degree Course"
@@ -115,7 +115,7 @@ const Addstudent = () => {
                     required
                     disabled={false}
                   />
-                </Grid>
+                </Grid> */}
 
 
           
