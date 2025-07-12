@@ -12,8 +12,7 @@ const enrollmentSchema = new mongoose.Schema({
     required: true
   },
   joinDate: {
-    type: Date,
-    default: Date.now
+    type: String,
   },
   totalFee: {
     type: Number,

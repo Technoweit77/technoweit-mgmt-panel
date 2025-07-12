@@ -149,8 +149,8 @@ const submitAddStudentData = async (e) => {
                 <Grid item size={{ md: 6 }}>
                   <TextField
                     fullWidth
-                    label="Admission Course"
-                    name="admissionCourse"
+                    label="Branch"
+                    name="Branch"
                     required
                     disabled={false}
                   />

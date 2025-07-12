@@ -48,7 +48,7 @@ const StudentDetails = () => {
           <Typography variant="body1">University: {studentData.university}</Typography>
           <Typography variant="body1">Degree/Course: {studentData.degreeCourse}</Typography>
           <Typography variant="body1">Academic Year: {studentData.academicYear}</Typography>
-          <Typography variant="body1">Admission Course: {studentData.admissionCourse}</Typography>
+          <Typography variant="body1">Branch: {studentData.Branch}</Typography>
           <Typography variant="body1">Phone No: {studentData.phoneNo}</Typography>
           <Typography variant="body1">Parent Phone No: {studentData.parentPhoneNo}</Typography>
         </Box>
