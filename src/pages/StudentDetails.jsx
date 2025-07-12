@@ -28,12 +28,10 @@ const StudentDetails = () => {
             src={`http://localhost:5000/${studentData.imageUrl}`}
             alt="Student"
             sx={{
-              height: "180px",
+            height: "180px",
             width: "165px",
             borderRadius: '50%', overflow: 'hidden',
             display: 'flex',
-            // alignItems: 'center',
-            // justifyContent: 'center',
             boxShadow: 3,
             
             }}
