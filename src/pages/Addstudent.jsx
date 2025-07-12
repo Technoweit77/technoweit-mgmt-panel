@@ -37,17 +37,22 @@ const Addstudent = () => {
     <>
       <Box sx={{
         display: "flex",
-        height: 600,
+        height:650,
         //   mt: 10,
         //   ml: 40,
-        width: 600,
+        // width: 600,
         justifyContent: "center",
         alignItems: "center",
         boxShadow: 3,
-        borderRadius: 5
+        borderRadius: 5,
+        position:'absolute',
+        top:"53%",
+        left:"50%",
+        width:"50%",
+        transform:"translate(-50%,-50%)"
       }}>
         <Box
-          component="form"
+         component="form"
           onSubmit={submitAddStudentData}
           sx={{
             mt: 1,
@@ -82,6 +87,16 @@ const Addstudent = () => {
                 disabled={false}
               />
             </Grid>
+            
+            <Grid item size={{ md: 4 }}>
+              <TextField
+                fullWidth
+                label="Last Name"
+                name="lastName"
+                required
+                disabled={false}
+              />
+            </Grid>
 
                 <Grid item size={{ md: 6 }}>
                   <TextField
@@ -103,15 +118,7 @@ const Addstudent = () => {
                 </Grid>
 
 
-            <Grid item size={{ md: 4 }}>
-              <TextField
-                fullWidth
-                label="Last Name"
-                name="lastName"
-                required
-                disabled={false}
-              />
-            </Grid>
+          
             <Grid item size={{ md: 6 }}>
               <LocalizationProvider dateAdapter={AdapterDayjs}>
                 <DatePicker
@@ -130,14 +137,6 @@ const Addstudent = () => {
                 />
               </LocalizationProvider>
             </Grid>
-<TextField
-  type="file"
-  onChange={(e) => setSelectedImage(e.target.files[0])}
-  name="studentimage"
-  label="Student Image"
-  variant="outlined"
-/>
-
             <Grid item size={{ md: 6 }}>
               <TextField
                 fullWidth
@@ -147,7 +146,8 @@ const Addstudent = () => {
                 disabled={false}
               />
             </Grid>
-            <Grid item size={{ md: 6 }}>
+            
+          <Grid item size={{ md: 6 }}>
               <TextField
                 fullWidth
                 label="Parent's Phone Number"
@@ -179,8 +179,8 @@ const Addstudent = () => {
             <Grid item size={{ md: 6 }}>
               <TextField
                 fullWidth
-                label="Admission Course"
-                name="admissionCourse"
+                label="Branch"
+                name="Branch"
                 required
                 disabled={false}
               />
@@ -200,9 +200,17 @@ const Addstudent = () => {
           {/* <TextField name="phoneNo" label="Phone Number" type="text" required fullWidth />
         <TextField name="parentPhoneNo" label="Parent's Phone Number" type="text" required fullWidth /> */}
 
+          <Grid item >
+              <TextField sx={{width:500}}
+  type="file"
+  onChange={(e) => setSelectedImage(e.target.files[0])}
+  name="studentimage"
+  label="Student Image"
+  variant="outlined"
+/></Grid>
           <Box sx={{ display: "flex", gap: 2 }}>
-            <Button type="submit" variant="contained" color="primary" sx={{ mt: 3, width: 200 }}> Add Student</Button>
-            <Button variant="outlined" color="error" sx={{ mt: 3, width: 200 }} onClick={() => navigate("/")}>  Cancel</Button>
+            <Button type="submit" variant="contained" color="primary" sx={{  width: 200 }}> Add Student</Button>
+            <Button variant="outlined" color="error" sx={{ width: 200 }} onClick={() => navigate("/")}>  Cancel</Button>
           </Box>
         </Box>
       </Box>
