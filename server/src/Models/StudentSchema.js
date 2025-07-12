@@ -32,7 +32,7 @@ const StudentSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  admissionCourse: {
+  Branch: {
     type: String,
     required: true
   },

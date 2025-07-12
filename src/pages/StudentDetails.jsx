@@ -72,7 +72,7 @@ const StudentDetails = () => {
           <Typography variant="body1" fontSize={18}>University: {studentData.university}</Typography>
           <Typography variant="body1" fontSize={18}>Degree/Course: {studentData.degreeCourse}</Typography>
           <Typography variant="body1" fontSize={18}>Academic Year: {studentData.academicYear}</Typography>
-          <Typography variant="body1" fontSize={18}>Admission Course: {studentData.admissionCourse}</Typography>
+          <Typography variant="body1" fontSize={18}>Branch: {studentData.Branch}</Typography>
           <Typography variant="body1" fontSize={18}>Phone No: {studentData.phoneNo}</Typography>
           <Typography variant="body1" fontSize={18}>Parent Phone No: {studentData.parentPhoneNo}</Typography>
         </Box>
@@ -101,4 +101,6 @@ const StudentDetails = () => {
     </>
   );
 };
+export default StudentDetails;
+}
 export default StudentDetails;
