@@ -38,7 +38,7 @@ const Studentlist = () => {
       try {
         const result = await axios.get("http://localhost:5000/api/fetchallcourse");
         setcoursedata(result.data);
-        console.log("Courses fetched:", result.data); 
+        console.log("Courses fetched:", result.data);
       } catch (error) {
         console.log("Error fetching courses:", error);
       }
@@ -134,7 +134,7 @@ const Studentlist = () => {
                   setFormData({ ...formData, student: value?._id || "" })
                 }
                 renderInput={(params) => (
-                  <TextField {...params}required />
+                  <TextField {...params} required />
                 )}
               />
             </FormControl>
@@ -144,12 +144,12 @@ const Studentlist = () => {
               <Autocomplete
                 options={coursedata}
                 getOptionLabel={(option) =>
-                  option?.name ? option.name: ""
+                  option?.name ? option.name : ""
                 }
                 value={coursedata.find((c) => c._id === formData.course) || null}
-                onChange={(e, value) =>
-                  setFormData({ ...formData, course: value?._id || "" })
-                }
+                onChange={(e, value) => {
+                  setFormData({ ...formData, course: value?._id || "", totalFee: value?.fees || "" })
+                }}
                 renderInput={(params) => (
                   <TextField {...params} required />
                 )}
@@ -185,16 +185,16 @@ const Studentlist = () => {
                 onChange={(e) => setFormData({ ...formData, paidFees: e.target.value })}
               />
             </FormControl>
-             
+
           </DialogContent>
-           <DialogActions>
+          <DialogActions>
             <Button type="submit" variant="contained" color="primary">
               Enroll
             </Button>
             <Button onClick={() => setIsOpen(false)} color="secondary">
               Cancel
             </Button>
-          </DialogActions>          
+          </DialogActions>
         </form>
       </Dialog>
     </>
