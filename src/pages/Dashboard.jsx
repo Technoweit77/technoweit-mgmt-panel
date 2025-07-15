@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react'
 
 const Dashboard = () => {
   const [counterData, setcounterData] = useState({})
+  const [totalRevenue, setTotalRevenue] = useState(0);
   useEffect(() => {
       let fetchCounterData =async()=>{
         try {
@@ -12,6 +13,11 @@ const Dashboard = () => {
         } catch (error) {
             console.log(error)
         }
+         // Get total revenue
+        const revenueRes = await axios.get("http://localhost:5000/api/fetchRevenue");
+        setTotalRevenue(revenueRes.data?.data[0]?.totalRevenue || 0);
+      
+     
         }
     fetchCounterData()
      
@@ -99,8 +105,8 @@ const Dashboard = () => {
        height:100
     }}>
     <Typography variant="h6">Total Revenue</Typography>
-    <Typography variant="h6">{counterData.Counter}</Typography>
-    <Typography>0</Typography>
+    <Typography variant="h6">{totalRevenue}</Typography>
+   
 </Box>
 </Box>
 </>
