@@ -92,3 +92,37 @@ D:\TechnoProject\technoweit-mgmt-panel\server>npm start
     "data": null,
     "message": "Enrollment Student updated successfully"
 }
+
+//fetchTotalRevenue
+[{
+    "_id": "664b0f4f2f9b8b22d1a7e1c1",
+    "enrollment": "664aef1d25f29b30d018ab5f",
+    "receiptNo": "REC001",
+    "amountPaid": 5000,
+    "paymentDate": "2024-07-01T10:00:00.000Z",
+    "paymentMode": "cash",
+    "remarks": "First installment",
+    "status": "paid"
+  },
+  {
+    "_id": "664b0f5e2f9b8b22d1a7e1c2",
+    "enrollment": "664aef1d25f29b30d018ab5f",
+    "receiptNo": "REC002",
+    "amountPaid": 7000,
+    "paymentDate": "2024-07-10T12:00:00.000Z",
+    "paymentMode": "upi",
+    "remarks": "Second installment",
+    "status": "paid"
+  }]
+  //create project
+  {
+  "projectTitle": "food cart",
+  "duration": "2 weeks",
+  "technology": ["React", "Node.js"],
+  "description": "Sample project",
+  "assignToStudents":["686c0816745e3c8aa20f385c","686f605786fee9f4c7559d86","686f655f86fee9f4c7559d88"]
+}
+//chnchl id
+6870e300c3164c55784717c8
+//projectId
+6875efe397a3ba620d1d35e8

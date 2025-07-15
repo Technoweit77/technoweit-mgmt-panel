@@ -9,7 +9,7 @@ const feeReceiptSchema = new mongoose.Schema({
   receiptNo: {
     type: String,
     required: true,
-    unique: true,
+    
     trim: true
   },
   amountPaid: {
@@ -28,6 +28,10 @@ const feeReceiptSchema = new mongoose.Schema({
   },
   remarks: {
     type: String,
+  },
+  status:{
+type:String,
+enum:["paid","unpaid"]
   }
 });
 

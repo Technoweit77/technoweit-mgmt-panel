@@ -15,8 +15,12 @@ const ProjectSchema = new mongoose.Schema({
   },
   description: {
     type: String,
-    required: true
-  }
+    required: true,
+  },
+
+  assignToStudents: [{
+    type: mongoose.Schema.Types.ObjectId, ref: "Student"
+  }]
 });
 
 export const Project = mongoose.model('Project', ProjectSchema);

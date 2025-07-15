@@ -62,4 +62,26 @@ amountPaid:amountPaid,        }
     res.status(500).json({ error: error.message });
   }
 };
-export{createfeereceipt,fetchreceipt,deletefeereceipt,updatefeerecepit}
+let fetchTotalRevenue =async(req,res)=>{
+    try {
+        const result=await FeeReceipt.aggregate([
+            {
+                $match:{
+                    status:"paid"
+                }
+            },
+            {
+                $group:{
+                    _id:null,//No grouping key to calculate total
+                    totalRevenue:{$sum:"$amountPaid"}//sum of total amount
+                }
+            }
+        ])
+        console.log(result);
+        res.status(200).json({data:result})
+
+    } catch (error) {
+       console.log(error.message) 
+    }
+}
+export{createfeereceipt,fetchreceipt,deletefeereceipt,updatefeerecepit,fetchTotalRevenue}
