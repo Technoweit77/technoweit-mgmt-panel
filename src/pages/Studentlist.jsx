@@ -3,7 +3,8 @@ import CustomTable from "../components/CustomTable";
 import axios from "axios";
 import {
   Box, Button, Tooltip, IconButton, Dialog, DialogTitle, DialogContent,
-  FormControl, FormLabel, TextField, DialogActions, Autocomplete
+  FormControl, FormLabel, TextField, DialogActions, Autocomplete,
+  Avatar
 } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
@@ -68,6 +69,17 @@ const Studentlist = () => {
   };
 
   const columns = [
+     {
+    header: "Photo",
+    accessorKey: "imageUrl",
+    Cell: ({ row }) => (
+      <Avatar
+        alt={`${row.original.firstName} ${row.original.lastName}`}
+        src={`http://localhost:5000/${row.original.imageUrl}`}
+        sx={{ width: 40, height: 40 }}
+      />
+    )
+  },
     { accessorKey: "firstName", header: "First Name" },
     { accessorKey: "middleName", header: "Middle Name" },
     { accessorKey: "lastName", header: "Last Name" },
