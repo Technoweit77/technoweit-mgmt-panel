@@ -69,24 +69,24 @@ const Studentlist = () => {
   };
 
   const columns = [
-     {
-    header: "Photo",
-    accessorKey: "imageUrl",
-    Cell: ({ row }) => (
-      <Avatar
-        alt={`${row.original.firstName} ${row.original.lastName}`}
-        src={`http://localhost:5000/${row.original.imageUrl}`}
-        sx={{ width: 40, height: 40 }}
-      />
-    )
-  },
-    { accessorKey: "firstName", header: "First Name" },
-    { accessorKey: "middleName", header: "Middle Name" },
-    { accessorKey: "lastName", header: "Last Name" },
-    { accessorKey: "college", header: "College" },
-    { accessorKey: "degreeCourse", header: "Degree/Course" },
-    { accessorKey: "Branch", header: "Branch" },
-    { accessorKey: "phoneNo", header: "Phone Number" },
+    {
+      header: "Photo",
+      accessorKey: "imageUrl",
+      Cell: ({ row }) => (
+        <Avatar
+          alt={`${row.original.firstName} ${row.original.lastName}`}
+          src={`http://localhost:5000/${row.original.student.imageUrl}`}
+          sx={{ width: 40, height: 40 }}
+        />
+      )
+    },
+    { accessorKey: "student.firstName", header: "First Name" },
+    { accessorKey: "student.middleName", header: "Middle Name" },
+    { accessorKey: "student.lastName", header: "Last Name" },
+    { accessorKey: "student.college", header: "College" },
+    { accessorKey: "student.degreeCourse", header: "Degree/Course" },
+    { accessorKey: "student.Branch", header: "Branch" },
+    { accessorKey: "student.phoneNo", header: "Phone Number" },
     {
       header: "Actions",
       Cell: ({ row }) => (
@@ -106,7 +106,7 @@ const Studentlist = () => {
               color="primary"
               onClick={() => {
                 navigator("/studentdetails", {
-                  state: row.original
+                  state: { ...row.original.student, ...row.original }
                 });
               }}
             >
