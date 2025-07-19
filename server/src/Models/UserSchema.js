@@ -9,15 +9,23 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true,
     validate: {
-            validator: v => /^\d{10}$/.test(v),
-            message: 'Phone number must be 10 digits'
-        } // Validates 10-digit mobile numbers
+      validator: v => /^\d{10}$/.test(v),
+      message: 'Phone number must be 10 digits'
+    } // Validates 10-digit mobile numbers
   },
   userType: {
     type: String,
     required: true,
-    enum: ['admin', 'student', 'faculty'] 
+    enum: ['admin', 'student', 'faculty']
   },
+  userEmail: {
+    type: String,
+    required: true,
+  },
+
+  studentId: {
+    type: mongoose.Schema.Types.ObjectId, ref: 'Student'
+  }
   // isActive: {
   //   type: Boolean,
   //   default: true
