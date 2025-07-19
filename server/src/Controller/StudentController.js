@@ -33,8 +33,7 @@ let fetchAllStudents = async (req, res) => {
           as: "enrollments"
         }
       },
-      { $unwind: "$enrollments" },
-
+      { $unwind: { path: "$enrollments", preserveNullAndEmptyArrays: true } },
       // Join with Course
       {
         $lookup: {
@@ -44,7 +43,7 @@ let fetchAllStudents = async (req, res) => {
           as: "courseInfo"
         }
       },
-      { $unwind: "$courseInfo" },
+      { $unwind: { path: "$courseInfo", preserveNullAndEmptyArrays: true } },
 
       // Project all student fields + additional fields
       {
@@ -71,6 +70,9 @@ let fetchAllStudents = async (req, res) => {
     res.status(500).json(error);
   }
 };
+
+
+
 let deleteStudent = async (req, res) => {
   try {
     let { studentId } = req.body;

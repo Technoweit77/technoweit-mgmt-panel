@@ -139,7 +139,7 @@ const Studentlist = () => {
               <Autocomplete
                 options={studentsdata}
                 getOptionLabel={(option) =>
-                  option?.firstName ? `${option.firstName} ${option.lastName}` : ""
+                  option?.student?.firstName ? `${option.student.firstName} ${option.student.lastName}` : ""
                 }
                 value={studentsdata.find((s) => s._id === formData.student) || null}
                 onChange={(e, value) =>
@@ -171,7 +171,7 @@ const Studentlist = () => {
             <FormControl fullWidth >
               <FormLabel>Join Date</FormLabel>
               <TextField
-                type="text"
+                type="Date"
                 fullWidth
                 value={formData.joinDate}
                 onChange={(e) => setFormData({ ...formData, joinDate: e.target.value })}
