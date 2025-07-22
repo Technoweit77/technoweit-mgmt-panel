@@ -1,6 +1,9 @@
 import mongoose from 'mongoose';
 
 const StudentSchema = new mongoose.Schema({
+  salutations:{
+    type:String
+  },
   firstName: {
     type: String,
     required: true
@@ -36,23 +39,22 @@ const StudentSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-
   phoneNo: {
     type: String,
     required: true,
     validate: {
-      validator: v => /^\d{10}$/.test(v),
-      message: 'Phone number must be 10 digits'
+    validator: v => /^\d{10}$/.test(v),
+    message: 'Phone number must be 10 digits'
     }
   },
   parentPhoneNo: {
     type: String,
     required: true,
     validate: {
-      validator: v => /^\d{10}$/.test(v),
-      message: 'Phone number must be 10 digits'
+    validator: v => /^\d{10}$/.test(v),
+    message: 'Phone number must be 10 digits'
     }
-  },
+    },
   imageUrl: {
     type: String
   }

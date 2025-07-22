@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Box, Typography, TextField, Button, Grid } from '@mui/material'
+import { Box, Typography, TextField, Button, Grid, FormLabel, FormControl, Autocomplete } from '@mui/material'
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useAlert } from '../components/CustomAlert';
@@ -12,7 +12,10 @@ const Addstudent = () => {
   const navigate = useNavigate();
   const [dob, setdob] = useState(null)
   const [selectedImage, setSelectedImage] = useState(null);
+  const [salutations, setsalutations] = useState("")
   const { showAlert } = useAlert();
+
+  const salutationsData = ["Mr.", "Miss.", "Mrs."]
 
   const submitAddStudentData = async (e) => {
     e.preventDefault();
@@ -20,12 +23,12 @@ const Addstudent = () => {
     const studentData = Object.fromEntries(formData.entries());
 
     console.log("Student DATA", studentData);
-    
-    
+
+
     try {
 
-      const result = await axios.post("http://localhost:5000/api/createstudent",{ ...studentData,studentimage:selectedImage},
-       { headers:{ "Content-Type": "multipart/form-data" }}
+      const result = await axios.post("http://localhost:5000/api/createstudent", { ...studentData, salutations, studentimage: selectedImage },
+        { headers: { "Content-Type": "multipart/form-data" } }
       );
       console.log("Result", result)
       showAlert("Student added successfully", "success");
@@ -37,7 +40,7 @@ const Addstudent = () => {
     <>
       <Box sx={{
         display: "flex",
-        height:600,
+        height: 600,
         //   mt: 10,
         //   ml: 40,
         // width: 600,
@@ -45,14 +48,14 @@ const Addstudent = () => {
         alignItems: "center",
         boxShadow: 3,
         borderRadius: 5,
-        position:'absolute',
-        top:"53%",
-        left:"50%",
-        width:"45%",
-        transform:"translate(-50%,-50%)"
+        position: 'absolute',
+        top: "53%",
+        left: "50%",
+        width: "45%",
+        transform: "translate(-50%,-50%)"
       }}>
         <Box
-         component="form"
+          component="form"
           onSubmit={submitAddStudentData}
           sx={{
             mt: 1,
@@ -66,6 +69,27 @@ const Addstudent = () => {
         >
           <Typography variant="h5">Add Student</Typography>
           <Grid container spacing={2}>
+
+
+            <Grid item size={{ md: 4 }}>
+              <FormControl fullWidth >
+                <FormLabel>Salutaions</FormLabel>
+                <Autocomplete
+                  name="salutations"
+                  options={salutationsData}
+                  value={salutations}
+                  onChange={(e, newValue) => {
+                    setsalutations(newValue)
+                  }}
+                  renderInput={(params) => (
+                    <TextField {...params} required />
+                  )}
+                />
+              </FormControl>
+
+            </Grid>
+
+
             <Grid item size={{ md: 4 }}>
               <TextField
                 fullWidth
@@ -76,8 +100,6 @@ const Addstudent = () => {
               />
             </Grid>
 
-
-
             <Grid item size={{ md: 4 }}>
               <TextField
                 fullWidth
@@ -87,7 +109,7 @@ const Addstudent = () => {
                 disabled={false}
               />
             </Grid>
-            
+
             <Grid item size={{ md: 4 }}>
               <TextField
                 fullWidth
@@ -98,7 +120,7 @@ const Addstudent = () => {
               />
             </Grid>
 
-                {/* <Grid item size={{ md: 6 }}>
+            {/* <Grid item size={{ md: 6 }}>
                   <TextField
                     fullWidth
                     label="Degree Course"
@@ -118,7 +140,7 @@ const Addstudent = () => {
                 </Grid> */}
 
 
-          
+
             <Grid item size={{ md: 6 }}>
               <LocalizationProvider dateAdapter={AdapterDayjs}>
                 <DatePicker
@@ -146,8 +168,8 @@ const Addstudent = () => {
                 disabled={false}
               />
             </Grid>
-            
-          <Grid item size={{ md: 6 }}>
+
+            <Grid item size={{ md: 6 }}>
               <TextField
                 fullWidth
                 label="Parent's Phone Number"
@@ -201,19 +223,19 @@ const Addstudent = () => {
         <TextField name="parentPhoneNo" label="Parent's Phone Number" type="text" required fullWidth /> */}
 
           <Grid item >
-              <TextField sx={{width:500}}
-  type="file"
-  onChange={(e) => setSelectedImage(e.target.files[0])}
-  name="studentimage"
-  label="Student Image"
-  variant="outlined"
-/></Grid>
+            <TextField sx={{ width: 500 }}
+              type="file"
+              onChange={(e) => setSelectedImage(e.target.files[0])}
+              name="studentimage"
+              label="Student Image"
+              variant="outlined"
+            /></Grid>
           <Box sx={{ display: "flex", gap: 2 }}>
-            <Button type="submit" variant="contained" color="primary" sx={{  width: 200 }}> Add Student</Button>
+            <Button type="submit" variant="contained" color="primary" sx={{ width: 200 }}> Add Student</Button>
             <Button variant="outlined" color="error" sx={{ width: 200 }} onClick={() => navigate("/")}>  Cancel</Button>
           </Box>
         </Box>
-      </Box>
+      </Box >
     </>
   )
 }

@@ -44,7 +44,7 @@ const Offerletter = ({ data }) => {
 
             <View style={styles.header}>
               <Text style={styles.name}>
-                Dear: {studentData.Salutations} {studentData.FName} {studentData.MName} {studentData.LName},
+                Dear: {studentData.Salutations} {studentData.firstName} {studentData.middleName} {studentData.lastName},
               </Text>
             </View>
             <View style={styles.content}>

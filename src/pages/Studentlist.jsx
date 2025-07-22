@@ -158,6 +158,7 @@ const Studentlist = () => {
                 getOptionLabel={(option) =>
                   option?.name ? option.name : ""
                 }
+
                 value={coursedata.find((c) => c._id === formData.course) || null}
                 onChange={(e, value) => {
                   setFormData({ ...formData, course: value?._id || "", totalFee: value?.fees || "" })

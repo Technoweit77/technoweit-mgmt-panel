@@ -111,12 +111,12 @@ const CourseCompletion = ({ data }) => {
 
                         <View style={styles.header}>
                             <Text style={styles.name}>
-                                Dear: {"Miss."} {studentData.FName} {studentData.MName} {studentData.LName},
+                                Dear: {"Miss."} {studentData.firstName} {studentData.middleName} {studentData.lastName},
                             </Text>
                         </View>
                         <View style={styles.content}>
                             <Text style={styles.firstLineIndent}>
-                                This is to certify that Miss. {studentData.FName} {studentData.MName} {studentData.LName} was working as intern in our organization
+                                This is to certify that Miss. {studentData.firstName} {studentData.middleName} {studentData.lastName} was working as intern in our organization
                                 as a "Full Stack Web Developer” for a period from
                                 15 June 2025 to 15 July 2025.
                             </Text>
