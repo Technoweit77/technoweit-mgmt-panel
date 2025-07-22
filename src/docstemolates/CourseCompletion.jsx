@@ -111,24 +111,25 @@ const CourseCompletion = ({ data }) => {
 
                         <View style={styles.header}>
                             <Text style={styles.name}>
-                                Dear: {"Miss."} {studentData.firstName} {studentData.middleName} {studentData.lastName},
+                                Dear: `${studentData?.salutations} ${studentData?.firstName} ${studentData?.middleName} ${studentData?.lastName}`,
                             </Text>
                         </View>
                         <View style={styles.content}>
                             <Text style={styles.firstLineIndent}>
-                                This is to certify that Miss. {studentData.firstName} {studentData.middleName} {studentData.lastName} was working as intern in our organization
-                                as a "Full Stack Web Developer” for a period from
-                                15 June 2025 to 15 July 2025.
+                                This is to certify that {studentData?.salutations} {studentData?.firstName} {studentData?.middleName} {studentData?.lastName} was working as intern in our organization
+                                as a {studentData.courseName} for a period from
+
                             </Text>
 
                             <Text style={styles.firstLineIndent}>
-                                She was one of the hard working and efficient employee of
-                                our organization and provides her best
-                                service to the organization during its job tenure.
+                                {studentData?.salutations == "Mr." ? 'He' : "She"} was one of the hard working and efficient student of
+                                our organization and provides {studentData?.salutations == "Mr." ? 'his' : "her"} best service to the organization during its internship period.
+                                successfully met all course requirements, completed all assignments and projects, and participated actively in collaborative activities.we found  {studentData?.salutations == "Mr." ? 'his' : "her"} punctual and hardworking person.
+                                This certificate is issued as formal recognition of the completion of the course and the skills acquired during the training.
                             </Text>
 
                             <Text style={styles.firstLineIndent}>
-                                We wish her all the best for her future endeavors.
+                                We wish {studentData?.salutations == "Mr." ? 'him' : "her"} all the best for {studentData?.salutations == "Mr." ? 'his' : "her"} future endeavors.
                             </Text>
 
                             {/* 22-01-2024   */}

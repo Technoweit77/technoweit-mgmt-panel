@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 import { Box, Button, Dialog, TextField, Typography } from '@mui/material';
 import { useLocation } from 'react-router-dom';
 import { PDFViewer, BlobProvider } from "@react-pdf/renderer";
-import Offerletter from "../docstemolates/Offerletter.jsx"; // path to your Offerletter component
+import Offerletter from "../docstemolates/Offerletter.jsx";
+ // path to your Offerletter component
 const StudentDetails = () => {
   const studentData = useLocation().state;
   const [open, setOpen] = useState(false);
+  
   const [offerOpen, setOfferOpen] = useState(false);
   console.log("Student Data from location state:", studentData);
 
@@ -16,6 +18,7 @@ const StudentDetails = () => {
         {/* <Typography variant="h5">Student Details</Typography> */}
         <Box sx={{ ml: 50, gap: 3, display: "flex" }}>
           <Button variant="contained">Course completion</Button>
+          
           <Button variant="contained" onClick={() => setOfferOpen(true)}>Offer Letter</Button>
           <Dialog open={offerOpen} onClose={() => setOfferOpen(false)} fullWidth maxWidth="lg">
   <Typography variant="h6" sx={{ p: 2, textAlign: "center" }}>
@@ -82,7 +85,7 @@ const StudentDetails = () => {
           <Typography variant="body1" fontSize={18}>Last Name: {studentData.lastName}</Typography>
           <Typography variant="body1" fontSize={18}>Date of Birth: {studentData.dateofbirth}</Typography>
           <Typography variant="body1" fontSize={18}>College: {studentData.college}</Typography>
-          <Typography variant="body1" fontSize={18}>University: {studentData.university}</Typography>
+-          <Typography variant="body1" fontSize={18}>University: {studentData.university}</Typography>
           <Typography variant="body1" fontSize={18}>Degree/Course: {studentData.degreeCourse}</Typography>
           <Typography variant="body1" fontSize={18}>Academic Year: {studentData.academicYear}</Typography>
           <Typography variant="body1" fontSize={18}>Branch: {studentData.Branch}</Typography>
