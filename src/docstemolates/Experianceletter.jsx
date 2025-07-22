@@ -113,12 +113,12 @@ const Experianceletter = ({ data }) => {
 
             <View style={styles.header}>
               <Text style={styles.name}>
-                Dear: {"Mr."} {studentData.FName} {studentData.MName} {studentData.LName},
+                Dear: {"Mr."} {studentData.firstName} {studentData.middleName} {studentData.lastName},
               </Text>
             </View>
             <View style={styles.content}>
               <Text style={styles.firstLineIndent}>
-                This is to certify that Mr. {studentData.FName} {studentData.MName} {studentData.LName}  was working full time in our organization
+                This is to certify that Mr. {studentData.firstName} {studentData.middleName} {studentData.lastName}  was working full time in our organization
                 as a "Full Stack Web Developer” for a period from
                 May 2024 to 30 June 2025.
               </Text>
