@@ -44,7 +44,7 @@ const Offerletter = ({ data }) => {
 
             <View style={styles.header}>
               <Text style={styles.name}>
-                Dear:`${studentData?.salutations} ${studentData?.firstName} ${studentData?.middleName} ${studentData?.lastName}`,
+         {`Dear: ${studentData?.salutations} ${studentData?.firstName} ${studentData?.middleName} ${studentData?.lastName},`}
               </Text>
             </View>
             <View style={styles.content}>
@@ -133,10 +133,10 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   firstLineIndent: {
-    textIndent: "35px",
+    textIndent:35,
   },
   letter: {
-    marginTop: "10px",
+    marginTop: 10,
     textAlign: "center",
     fontFamily: "Times-Bold",
   },

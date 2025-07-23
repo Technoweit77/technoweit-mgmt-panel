@@ -1,5 +1,3 @@
-
-
 import React from "react";
 import {
     Document,
@@ -46,10 +44,8 @@ const Projectletter = ({ data }) => {
 
                         <View style={styles.header}>
                             <Text style={styles.name}>
-                               Dear`${studentData?.salutations} ${studentData?.firstName} ${studentData?.middleName} ${studentData?.lastName}`
-                              
-,
-                            </Text>
+                            {`Dear: ${studentData?.salutations} ${studentData?.firstName} ${studentData?.middleName} ${studentData?.lastName},`}
+                              </Text>
                         </View>
                         <View style={styles.content}>
                             <Text style={styles.firstLineIndent}>
@@ -63,7 +59,7 @@ const Projectletter = ({ data }) => {
                         </View>
                         <View style={styles.signature}>
                             <Text>For Technoweit,</Text>
-                            {/* <Image style={styles.stamp} src={stamp} /> */}
+                            <Image style={styles.stamp} src={stamp} />
                             <Text>Mr. Vatsalya U. Bendale</Text>
                             <Text>Co-Founder</Text>
                         </View>
@@ -94,64 +90,64 @@ export default Projectletter;
 const styles = StyleSheet.create({
 
     top: {
-        flex: 0.2,
-    },
-    top_img: {
-        height: 100,
-        width: 600,
-    },
-    page: {
-        padding: 45,
-        fontSize: 15,
-        flex: 0.7,
-    },
+    flex: 0.2,
+  },
+  top_img: {
+    height: 100,
+    width: 600,
+  },
+  page: {
+    padding: 45,
+    fontSize: 15,
+    flex: 0.7,
+  },
 
-    container: {
-        flex: 1,
-        // fontFamily:"Times New Roman",
-        fontFamily: "Times-Roman",
-    },
-    logo: {
-        marginTop: 25,
-        height: 70,
-        width: 180,
-        marginLeft: 25,
-    },
-    cdate: {
-        marginLeft: 370,
-    },
-    header: {
-        marginTop: 20,
-        marginBottom: 20,
-    },
-    firstLineIndent: {
-        textIndent: "35px",
-    },
-    letter: {
-        marginTop: "10px",
-        textAlign: "center",
-        fontFamily: "Times-Bold",
-    },
-    name: {
-        fontWeight: "bold",
-    },
-    content: {
-        textAlign: "justify",
-    },
-    signature: {
-        marginTop: 70,
-    },
-    stamp: {
-        height: 105,
-        width: 105,
-    },
-    address: {
-        flex: 0.1,
-        position: "absolute",
-        bottom: 30,
-        left: 45,
-        right: 45,
-        fontSize: 14,
-        textAlign: "center",
-    },
+  container: {
+    flex: 1,
+    // fontFamily:"Times New Roman",
+    fontFamily: "Times-Roman",
+  },
+  logo: {
+    marginTop: 25,
+    height: 70,
+    width: 180,
+    marginLeft: 25,
+  },
+  cdate: {
+    marginLeft: 370,
+  },
+  header: {
+    marginTop: 20,
+    marginBottom: 20,
+  },
+  firstLineIndent: {
+    textIndent: 35,
+  },
+  letter: {
+    marginTop: 10,
+    textAlign: "center",
+    fontFamily: "Times-Bold",
+  },
+  name: {
+    fontWeight: "bold",
+  },
+  content: {
+    textAlign: "justify",
+  },
+  signature: {
+    marginTop: 70,
+  },
+  stamp: {
+    height: 105,
+    width: 105,
+  },
+  address: {
+    flex: 0.1,
+    position: "absolute",
+    bottom: 30,
+    left: 45,
+    right: 45,
+    fontSize: 14,
+    textAlign: "center",
+  },
 });
