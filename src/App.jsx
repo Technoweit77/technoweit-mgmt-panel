@@ -15,6 +15,8 @@ import Project from './pages/Projects';
 import Studentlist from './pages/Studentlist';
 import Users from './pages/Users';
 import StudentDetails from './pages/StudentDetails';
+import AssignmentIndIcon from '@mui/icons-material/AssignmentInd';
+import Enrolledstudents from './pages/Enrolledstudents';
 
 
 // import path from 'path';
@@ -32,6 +34,7 @@ const App = ({ toggleTheme, themeMode }) => {
     { path: "*", element: <NotFound /> },
     { path: "/", element: <Login /> },
     { path: "/dashboard", element: <Dashboard /> },
+    {path:"/enrolledstudents",element:<Enrolledstudents/>},
     {path:"/addstudent",element:<Addstudent/>},
     {path:"/courses",element:<Courses/>},
     {path:"/projects",element:<Project/>},
@@ -44,6 +47,7 @@ const App = ({ toggleTheme, themeMode }) => {
 
   const appMenus = [
     { name: "Dashboard", path: "/dashboard", icon: <DashboardIcon />, allowedRole: ['Admin'] },
+    {name:"Enrolledstudents",path:"/enrolledstudents",icon:<AssignmentIndIcon/>,allowedRole:['Admin']},
     { name: "Addstudent", path: "/addstudent" ,icon:<PersonAddIcon/>, allowedRole: ['Admin'] },
     { name: "Courses", path: "/courses" ,icon:<TextSnippetIcon />, allowedRole: ['Admin'] },
     { name: "Projects", path: "/projects" ,icon:<TaskIcon/>, allowedRole: ['Admin'] },

@@ -4,7 +4,9 @@ import {
     fetchreceipt,
     updatefeerecepit,
     deletefeereceipt,
-    fetchTotalRevenue
+    fetchTotalRevenue,
+    verifyRazorpay,
+    RazorpayOrder
 } from "../Controller/FeeReceiptController.js"
 
 
@@ -14,4 +16,6 @@ feereceiptRouter.get("/fetchreceipt",fetchreceipt );
 feereceiptRouter.delete("/deletereceipt",deletefeereceipt);
 feereceiptRouter.put("/updatereceipt",updatefeerecepit)
 feereceiptRouter.get("/fetchRevenue",fetchTotalRevenue)
+feereceiptRouter.post("/razorpayorder",RazorpayOrder);
+feereceiptRouter.post("/verifyrazorpay",verifyRazorpay)
 export default feereceiptRouter;

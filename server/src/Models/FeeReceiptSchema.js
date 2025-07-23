@@ -9,7 +9,7 @@ const feeReceiptSchema = new mongoose.Schema({
   receiptNo: {
     type: String,
     required: true,
-    
+
     trim: true
   },
   amountPaid: {
@@ -23,15 +23,18 @@ const feeReceiptSchema = new mongoose.Schema({
   },
   paymentMode: {
     type: String,
-    enum: ["cash", "upi", "card", "netbanking"],
+    enum: ["cash", "upi", "card", "netbanking", "razorpay"],
     required: true
   },
   remarks: {
     type: String,
   },
-  status:{
-type:String,
-enum:["paid","unpaid"]
+  transactionId: {
+    type: String,
+  },
+  status: {
+    type: String,
+    enum: ["paid", "unpaid", "pending", "success", "failed",]
   }
 });
 

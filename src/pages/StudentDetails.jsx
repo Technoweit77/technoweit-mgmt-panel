@@ -2,12 +2,68 @@ import React, { useState } from 'react';
 import { Box, Button, Dialog, TextField, Typography } from '@mui/material';
 import { useLocation } from 'react-router-dom';
 import { PDFViewer, BlobProvider } from "@react-pdf/renderer";
-import Offerletter from "../docstemolates/Offerletter.jsx"; // path to your Offerletter component
+import axios from 'axios';
+
 const StudentDetails = () => {
   const studentData = useLocation().state;
   const [open, setOpen] = useState(false);
-  const [offerOpen, setOfferOpen] = useState(false);
+  const [payablrAmt, setPayablrAmt] = useState(0)
   console.log("Student Data from location state:", studentData);
+
+  const handlePayment = async () => {
+    const loadScript = (src) => {
+      return new Promise((resolve) => {
+        const script = document.createElement("script");
+        script.src = src;
+        script.onload = () => resolve(true);
+        script.onerror = () => resolve(false);
+        document.body.appendChild(script);
+      });
+    };
+
+    const res = await loadScript("https://checkout.razorpay.com/v1/checkout.js");
+
+    if (!res) {
+      alert("Razorpay SDK failed to load.");
+      return;
+    }
+
+    try {
+      const razorpay = await axios.post("http://localhost:5000/api/razorpayorder", {
+        enrollmentId: studentData.enrollments._id,
+        amount: Number(payablrAmt),
+      });
+
+      const options = {
+        key: "rzp_test_RRRqrm1ahDFT82",
+        amount: Number(payablrAmt) * 100,
+        currency: "INR",
+        name: "Isha FoodCorner",
+        description: "Order Payment",
+        order_id: razorpay.data.order.id,
+        handler: async function (response) {
+          alert("Payment Successful!");
+          dispatcher(clearCart());
+          // Optional: you can also mark the order as 'paid' on the server here
+        },
+        prefill: {
+          name: studentData?.Name || "Customer",
+          email: studentData?.Email || "example@example.com",
+          contact: studentData?.Mobile || "9999999999",
+        },
+        theme: {
+          color: "#ff5722",
+        },
+      };
+
+      const paymentObject = new window.Razorpay(options);
+      paymentObject.open();
+    } catch (error) {
+      console.error("Payment initiation failed", error);
+      alert("Payment failed");
+    }
+  };
+
 
   return (
     <>
@@ -16,17 +72,7 @@ const StudentDetails = () => {
         {/* <Typography variant="h5">Student Details</Typography> */}
         <Box sx={{ ml: 50, gap: 3, display: "flex" }}>
           <Button variant="contained">Course completion</Button>
-          <Button variant="contained" onClick={() => setOfferOpen(true)}>Offer Letter</Button>
-          <Dialog open={offerOpen} onClose={() => setOfferOpen(false)} fullWidth maxWidth="lg">
-  <Typography variant="h6" sx={{ p: 2, textAlign: "center" }}>
-    Offer Letter Preview
-  </Typography>
-  <Box sx={{ height: "90vh" }}>
-    <PDFViewer width="100%" height="100%">
-      <Offerletter />
-    </PDFViewer>
-  </Box>
-</Dialog>
+          <Button variant="contained" >Offer Letter</Button>
           <Button variant="contained">Project Letter</Button>
           <Button variant="contained">Experience Letter</Button>
         </Box>
@@ -34,8 +80,7 @@ const StudentDetails = () => {
 
       {/* Profile Image + Name + Phone */}
       <Box sx={{ display: "flex" }}>
-
-        <Box sx={{ display: "flex" }}>
+      <Box sx={{ display: "flex" }}>
           <Box
             component="img"
             src={`http://localhost:5000/${studentData.imageUrl}`}
@@ -104,26 +149,32 @@ const StudentDetails = () => {
               backgroundColor: '#f1f1f1',
             },
           }}
+
         >
           <Typography variant="body1" fontSize={18}>Course: {studentData.courseName}</Typography>
           <Typography variant="body1" fontSize={18}>Total Fees: {studentData.totalFees}</Typography>
           <Typography variant="body1" fontSize={18}>Paid Fees: {studentData.paidFees}</Typography>
           <Typography variant="body1" fontSize={18}>Remaining Fees: {studentData.remainingFees}</Typography>
-          <Button sx={{mt:20,ml:35}} variant="contained"onClick={() => setOpen(true)}>Pay Now</Button>
-           <Dialog open={open} onClose={() => setOpen(false)}>
-           <div style={{ padding: 20,gap:2 }}>
-            <Typography sx={{display:"flex",justifyContent:"center",alignItems:"center"}}>Payment Details</Typography>
-            <Typography>Course:{studentData.courseName}</Typography>
-            <Typography>Total fee:{studentData.totalFees}</Typography>
-            <TextField label="Payable Amount:"required disabled={false}/>
-             <Button sx={{mt:10,mr:1}} variant="contained" >Pay</Button>
-           <Button sx={{mt:10}} variant="contained" onClick={() => setOpen(false)}>Close</Button>
-        </div>
-      </Dialog>
+          <Button sx={{ mt: 20, ml: 35 }} variant="contained" onClick={() => setOpen(true)}>Pay Now</Button>
+          <Dialog open={open} onClose={() => setOpen(false)}>
+            <div style={{ padding: 20, gap: 2 }}>
+              <Typography sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>Payment Details</Typography>
+              <Typography>Course:{studentData.courseName}</Typography>
+              <Typography>Total fee:{studentData.totalFees}</Typography>
+              <Typography variant="body1" fontSize={18}>Paid Fees: {studentData.paidFees}</Typography>
+              <Typography variant="body1" fontSize={18}>Remaining Fees: {studentData.remainingFees}</Typography>
+              <TextField label="Payable Amount:"
+                onChange={(e) => setPayablrAmt(e.target.value)}
+                required disabled={false} />
+              <Button sx={{ mt: 10, mr: 1 }} variant="contained" onClick={() => handlePayment()} >Pay</Button>
+              <Button sx={{ mt: 10 }} variant="contained" onClick={() => setOpen(false)}>Close</Button>
+            </div>
+          </Dialog>
         </Box>
       </Box>
     </>
   );
-};
+}
+  ;
 
 export default StudentDetails;

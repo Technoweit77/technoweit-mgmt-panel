@@ -41,7 +41,7 @@ const Addstudent = () => {
       <Box sx={{
         display: "flex",
         height: 600,
-        //   mt: 10,
+          mt: 5,
         //   ml: 40,
         // width: 600,
         justifyContent: "center",
@@ -58,7 +58,7 @@ const Addstudent = () => {
           component="form"
           onSubmit={submitAddStudentData}
           sx={{
-            mt: 1,
+           
             gap: 1,
             width: "500px",
             display: "flex",
@@ -74,7 +74,9 @@ const Addstudent = () => {
             <Grid item size={{ md: 4 }}>
               <FormControl fullWidth >
                 <FormLabel>Salutaions</FormLabel>
+              
                 <Autocomplete
+                
                   name="salutations"
                   options={salutationsData}
                   value={salutations}
@@ -91,7 +93,7 @@ const Addstudent = () => {
 
 
             <Grid item size={{ md: 4 }}>
-              <TextField
+              <TextField sx={{mt:2.7}}
                 fullWidth
                 label="First Name"
                 name="firstName"
@@ -101,7 +103,7 @@ const Addstudent = () => {
             </Grid>
 
             <Grid item size={{ md: 4 }}>
-              <TextField
+              <TextField sx={{mt:2.7}}
                 fullWidth
                 label="Middle Name"
                 name="middleName"
@@ -120,25 +122,7 @@ const Addstudent = () => {
               />
             </Grid>
 
-            {/* <Grid item size={{ md: 6 }}>
-                  <TextField
-                    fullWidth
-                    label="Degree Course"
-                    name="degreeCourse"
-                    required
-                    disabled={false}
-                  />
-                </Grid>
-                <Grid item size={{ md: 6 }}>
-                  <TextField
-                    fullWidth
-                    label="Branch"
-                    name="Branch"
-                    required
-                    disabled={false}
-                  />
-                </Grid> */}
-
+            
 
 
             <Grid item size={{ md: 6 }}>
@@ -207,29 +191,32 @@ const Addstudent = () => {
                 disabled={false}
               />
             </Grid>
-
-
+{/* <TextField  name="college" label="College" required  /> */}
+           <Grid item size={{ md: 6 }}>
+              <TextField
+                fullWidth
+                label="College"
+                name="college"
+                required
+                disabled={false}
+              />
+            </Grid>
           </Grid>
-          {/* <TextField name="firstName" label="First Name" variant="outlined" fullWidth required /> */}
-          {/* <TextField name="middleName" label="Middle Name" variant="outlined" fullWidth /> */}
-          {/* <TextField name="lastName" label="Last Name" variant="outlined" fullWidth required /> */}
-          {/* <TextField name="dateofbirth" label="Date of Birth" type="date" required fullWidth /> */}
-          <TextField name="college" label="College" required fullWidth />
+          
+          
           <TextField name="university" label="University" required fullWidth />
-          {/* <TextField name="degreeCourse" label="Degree Course" required fullWidth /> */}
-          {/* <TextField name="academicYear" label="Academic Year" required fullWidth /> */}
-          {/* <TextField name="admissionCourse" label="Admission Course" required fullWidth /> */}
-          {/* <TextField name="phoneNo" label="Phone Number" type="text" required fullWidth />
-        <TextField name="parentPhoneNo" label="Parent's Phone Number" type="text" required fullWidth /> */}
+          
 
           <Grid item >
             <TextField sx={{ width: 500 }}
               type="file"
               onChange={(e) => setSelectedImage(e.target.files[0])}
               name="studentimage"
-              label="Student Image"
+              label="Student Image*"
               variant="outlined"
-            /></Grid>
+              InputLabelProps={{ sx: { pl: 40 },}} // Adds padding to the label 
+              />
+            </Grid>
           <Box sx={{ display: "flex", gap: 2 }}>
             <Button type="submit" variant="contained" color="primary" sx={{ width: 200 }}> Add Student</Button>
             <Button variant="outlined" color="error" sx={{ width: 200 }} onClick={() => navigate("/")}>  Cancel</Button>
