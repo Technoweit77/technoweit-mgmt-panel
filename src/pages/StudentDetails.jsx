@@ -1,16 +1,19 @@
 import React, { useState } from 'react';
 import { Box, Button, Dialog, TextField, Typography } from '@mui/material';
 import { useLocation } from 'react-router-dom';
-import { PDFViewer,PDFDownloadLink } from "@react-pdf/renderer";
+import { PDFViewer, PDFDownloadLink } from "@react-pdf/renderer";
 import Offerletter from "../docstemolates/Offerletter.jsx";
 import CourseCompletion from '../docstemolates/CourseCompletion.jsx';
 import Experianceletter from '../docstemolates/Experianceletter.jsx';
 import Projectletter from '../docstemolates/Projectletter.jsx';
+import axios from 'axios';
+
 
 // path to your Offerletter component
 const StudentDetails = () => {
   const studentData = useLocation().state;
   const [open, setOpen] = useState(false);
+  const [payablrAmt, setPayablrAmt] = useState(0)
   console.log("Student Data from location state:", studentData);
 
   const handlePayment = async () => {
@@ -75,57 +78,57 @@ const StudentDetails = () => {
         {/* <Typography variant="h5">Student Details</Typography> */}
         <Box sx={{ ml: 50, gap: 3, display: "flex" }}>
           {/* course completion certificate */}
-         <PDFDownloadLink
-        document={<CourseCompletion data={studentData} />}
-       fileName={`${studentData?.firstName}Course_Completion.pdf`}>
-       <Button variant="contained" sx={{
-        '&:hover, &:focus, &:active': {
-    backgroundColor: 'hsla(220, 92%, 19%, 1.00)',
-    boxShadow: 4,
-  },
-}}>
-       course completion
-      </Button>
-     </PDFDownloadLink>
-     {/* offer letter print  */}
-     <PDFDownloadLink
-        document={<Offerletter data={studentData} />}
-       fileName={`${studentData?.firstName}offer_letter.pdf`}>
-       <Button variant="contained" sx={{
-        '&:hover, &:focus, &:active': {
-    backgroundColor: 'hsla(220, 92%, 19%, 1.00)',
-    boxShadow: 4,
-  },
-}}>Offer Letter</Button>
-        </PDFDownloadLink>
-        {/* project letter */}
-         <PDFDownloadLink
-           document={<Projectletter data={studentData} />}
-           fileName={`${studentData?.firstName}project_letter.pdf`}>
-          <Button variant="contained" sx={{
-        '&:hover, &:focus, &:active': {
-    backgroundColor: 'hsla(220, 92%, 19%, 1.00)',
-    boxShadow: 4,
-  },
-}}>Project Letter</Button>
+          <PDFDownloadLink
+            document={<CourseCompletion data={studentData} />}
+            fileName={`${studentData?.firstName}Course_Completion.pdf`}>
+            <Button variant="contained" sx={{
+              '&:hover, &:focus, &:active': {
+                backgroundColor: 'hsla(220, 92%, 19%, 1.00)',
+                boxShadow: 4,
+              },
+            }}>
+              course completion
+            </Button>
+          </PDFDownloadLink>
+          {/* offer letter print  */}
+          <PDFDownloadLink
+            document={<Offerletter data={studentData} />}
+            fileName={`${studentData?.firstName}offer_letter.pdf`}>
+            <Button variant="contained" sx={{
+              '&:hover, &:focus, &:active': {
+                backgroundColor: 'hsla(220, 92%, 19%, 1.00)',
+                boxShadow: 4,
+              },
+            }}>Offer Letter</Button>
+          </PDFDownloadLink>
+          {/* project letter */}
+          <PDFDownloadLink
+            document={<Projectletter data={studentData} />}
+            fileName={`${studentData?.firstName}project_letter.pdf`}>
+            <Button variant="contained" sx={{
+              '&:hover, &:focus, &:active': {
+                backgroundColor: 'hsla(220, 92%, 19%, 1.00)',
+                boxShadow: 4,
+              },
+            }}>Project Letter</Button>
           </PDFDownloadLink>
           {/* experience letter */}
-           <PDFDownloadLink
-           document={<Experianceletter data={studentData} />}
-           fileName={`${studentData?.firstName}Experiance_letter.pdf`}>
-          <Button variant="contained" sx={{
-        '&:hover, &:focus, &:active': {
-    backgroundColor: 'hsla(220, 92%, 19%, 1.00)',
-    boxShadow: 4,
-  },
-}}>Experience Letter</Button>
+          <PDFDownloadLink
+            document={<Experianceletter data={studentData} />}
+            fileName={`${studentData?.firstName}Experiance_letter.pdf`}>
+            <Button variant="contained" sx={{
+              '&:hover, &:focus, &:active': {
+                backgroundColor: 'hsla(220, 92%, 19%, 1.00)',
+                boxShadow: 4,
+              },
+            }}>Experience Letter</Button>
           </PDFDownloadLink>
         </Box>
       </Box>
 
       {/* Profile Image + Name + Phone */}
       <Box sx={{ display: "flex" }}>
-      <Box sx={{ display: "flex" }}>
+        <Box sx={{ display: "flex" }}>
           <Box
             component="img"
             src={`http://localhost:5000/${studentData.imageUrl}`}
@@ -167,7 +170,7 @@ const StudentDetails = () => {
             },
           }}
         >
-           <Typography variant="body1" fontSize={18}>Salutation: {studentData.salutations}</Typography>
+          <Typography variant="body1" fontSize={18}>Salutation: {studentData.salutations}</Typography>
           <Typography variant="body1" fontSize={18}>First Name: {studentData.firstName}</Typography>
           <Typography variant="body1" fontSize={18}>Middle Name: {studentData.middleName}</Typography>
           <Typography variant="body1" fontSize={18}>Last Name: {studentData.lastName}</Typography>
@@ -207,8 +210,10 @@ const StudentDetails = () => {
               <Typography sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>Payment Details</Typography>
               <Typography>Course:{studentData.courseName}</Typography>
               <Typography>Total fee:{studentData.totalFees}</Typography>
-              <TextField label="Payable Amount:" required disabled={false} />
-              <Button sx={{ mt: 10, mr: 1 }} variant="contained" >Pay</Button>
+              <TextField label="Payable Amount:"
+                onChange={(e) => setPayablrAmt(e.target.value)}
+                required disabled={false} />
+              <Button sx={{ mt: 10, mr: 1 }} variant="contained" onClick={() => handlePayment()} >Pay</Button>
               <Button sx={{ mt: 10 }} variant="contained" onClick={() => setOpen(false)}>Close</Button>
             </div>
           </Dialog>
