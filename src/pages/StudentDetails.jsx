@@ -7,7 +7,7 @@ import CourseCompletion from '../docstemolates/CourseCompletion.jsx';
 import Experianceletter from '../docstemolates/Experianceletter.jsx';
 import Projectletter from '../docstemolates/Projectletter.jsx';
 import axios from 'axios';
-
+import { pdf } from '@react-pdf/renderer';
 
 // path to your Offerletter component
 const StudentDetails = () => {
@@ -69,6 +69,41 @@ const StudentDetails = () => {
       alert("Payment failed");
     }
   };
+  const handleDownloadPDF = async (type) => {
+  let docComponent;
+  let fileName;
+
+  switch (type) {
+    case "course":
+      docComponent = <CourseCompletion data={studentData} />;
+      fileName = `${studentData?.firstName}_Course_Completion.pdf`;
+      break;
+    case "offer":
+      docComponent = <Offerletter data={studentData} />;
+      fileName = `${studentData?.firstName}_Offer_Letter.pdf`;
+      break;
+    case "project":
+      docComponent = <Projectletter data={studentData} />;
+      fileName = `${studentData?.firstName}_Project_Letter.pdf`;
+      break;
+    case "experience":
+      docComponent = <Experianceletter data={studentData} />;
+      fileName = `${studentData?.firstName}_Experience_Letter.pdf`;
+      break;
+    default:
+      return;
+  }
+
+  const blob = await pdf(docComponent).toBlob();
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = fileName;
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+  URL.revokeObjectURL(url);
+};
 
 
   return (
@@ -77,52 +112,44 @@ const StudentDetails = () => {
       <Box sx={{ display: "flex", gap: 3, width: 1500, alignItems: "center" }}>
         {/* <Typography variant="h5">Student Details</Typography> */}
         <Box sx={{ ml: 50, gap: 3, display: "flex" }}>
-          {/* course completion certificate */}
-          <PDFDownloadLink
-            document={<CourseCompletion data={studentData} />}
-            fileName={`${studentData?.firstName}Course_Completion.pdf`}>
-            <Button variant="contained" sx={{
-              '&:hover, &:focus, &:active': {
-                backgroundColor: 'hsla(220, 92%, 19%, 1.00)',
-                boxShadow: 4,
-              },
-            }}>
-              course completion
-            </Button>
-          </PDFDownloadLink>
-          {/* offer letter print  */}
-          <PDFDownloadLink
-            document={<Offerletter data={studentData} />}
-            fileName={`${studentData?.firstName}offer_letter.pdf`}>
-            <Button variant="contained" sx={{
-              '&:hover, &:focus, &:active': {
-                backgroundColor: 'hsla(220, 92%, 19%, 1.00)',
-                boxShadow: 4,
-              },
-            }}>Offer Letter</Button>
-          </PDFDownloadLink>
-          {/* project letter */}
-          <PDFDownloadLink
-            document={<Projectletter data={studentData} />}
-            fileName={`${studentData?.firstName}project_letter.pdf`}>
-            <Button variant="contained" sx={{
-              '&:hover, &:focus, &:active': {
-                backgroundColor: 'hsla(220, 92%, 19%, 1.00)',
-                boxShadow: 4,
-              },
-            }}>Project Letter</Button>
-          </PDFDownloadLink>
-          {/* experience letter */}
-          <PDFDownloadLink
-            document={<Experianceletter data={studentData} />}
-            fileName={`${studentData?.firstName}Experiance_letter.pdf`}>
-            <Button variant="contained" sx={{
-              '&:hover, &:focus, &:active': {
-                backgroundColor: 'hsla(220, 92%, 19%, 1.00)',
-                boxShadow: 4,
-              },
-            }}>Experience Letter</Button>
-          </PDFDownloadLink>
+         
+        <Button
+    variant="contained"
+    disabled={studentData.remainingFees!==0}
+    onClick={() => handleDownloadPDF("course")
+     }
+    sx={{ '&:hover': { backgroundColor: 'hsla(220, 92%, 19%, 1.00)', boxShadow: 4 } }}
+  >
+    Course Completion
+  </Button>
+
+  <Button
+    variant="contained"
+    disabled={studentData.remainingFees!==0}
+    onClick={() => handleDownloadPDF("offer")}
+    sx={{ '&:hover': { backgroundColor: 'hsla(220, 92%, 19%, 1.00)', boxShadow: 4 } }}
+  >
+    Offer Letter
+  </Button>
+
+  <Button
+    variant="contained"
+    disabled={studentData.remainingFees!==0}
+    onClick={() => handleDownloadPDF("project")}
+    sx={{ '&:hover': { backgroundColor: 'hsla(220, 92%, 19%, 1.00)', boxShadow: 4 } }}
+  >
+    Project Letter
+  </Button>
+
+  <Button
+    variant="contained"
+    disabled={studentData.remainingFees!==0}
+    onClick={() => handleDownloadPDF("experience")}
+    sx={{ '&:hover': { backgroundColor: 'hsla(220, 92%, 19%, 1.00)', boxShadow: 4 } }}
+  >
+    Experience Letter
+  </Button>
+
         </Box>
       </Box>
 
