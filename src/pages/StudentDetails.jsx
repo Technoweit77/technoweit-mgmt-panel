@@ -127,7 +127,7 @@ const StudentDetails = () => {
           <Typography variant="body1" fontSize={18}>Last Name: {studentData.lastName}</Typography>
           <Typography variant="body1" fontSize={18}>Date of Birth: {studentData.dateofbirth}</Typography>
           <Typography variant="body1" fontSize={18}>College: {studentData.college}</Typography>
-          <Typography variant="body1" fontSize={18}>University: {studentData.university}</Typography>
+-          <Typography variant="body1" fontSize={18}>University: {studentData.university}</Typography>
           <Typography variant="body1" fontSize={18}>Degree/Course: {studentData.degreeCourse}</Typography>
           <Typography variant="body1" fontSize={18}>Academic Year: {studentData.academicYear}</Typography>
           <Typography variant="body1" fontSize={18}>Branch: {studentData.Branch}</Typography>

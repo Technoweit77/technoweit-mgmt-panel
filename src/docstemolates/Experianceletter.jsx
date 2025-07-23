@@ -113,24 +113,22 @@ const Experianceletter = ({ data }) => {
 
             <View style={styles.header}>
               <Text style={styles.name}>
-                Dear: {"Mr."} {studentData.FName} {studentData.MName} {studentData.LName},
+                Dear: `${studentData?.salutations} ${studentData?.firstName} ${studentData?.middleName} ${studentData?.lastName}`,
               </Text>
             </View>
             <View style={styles.content}>
               <Text style={styles.firstLineIndent}>
-                This is to certify that Mr. {studentData.FName} {studentData.MName} {studentData.LName}  was working full time in our organization
-                as a "Full Stack Web Developer” for a period from
-                May 2024 to 30 June 2025.
+                This is to certify that {studentData.salutations} {studentData.firstName} {studentData.middleName} {studentData.lastName}  was working full time in our organization
+                as a {studentData.courseName} for a period from May 2024 to 30 June 2025.
               </Text>
 
               <Text style={styles.firstLineIndent}>
-                He was one of the hard working and efficient employee of
-                our organization and provides his best
-                service to the organization during its job tenure.
+                {studentData?.salutations == "Mr." ? 'He' : "She"} was one of the hard working and efficient employee of
+                our organization and provides {studentData?.salutations == "Mr." ? 'his' : "her"} best service to the organization during its internship period.
               </Text>
 
               <Text style={styles.firstLineIndent}>
-                We wish him all the best for his future endeavors.
+                We wish {studentData?.salutations == "Mr." ? 'him' : "her"} all the best for {studentData?.salutations == "Mr." ? 'his' : "her"} future endeavors.
               </Text>
 
               {/* 22-01-2024   */}

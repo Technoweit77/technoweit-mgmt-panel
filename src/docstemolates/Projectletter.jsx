@@ -46,18 +46,18 @@ const Projectletter = ({ data }) => {
 
                         <View style={styles.header}>
                             <Text style={styles.name}>
-                                {/* Dear: {studentData.Salutations} {studentData.FName} {studentData.MName} {studentData.LName}, */}
-                                Dear: Mr. Gopalsing Mohansing Rathod
+                               Dear`${studentData?.salutations} ${studentData?.firstName} ${studentData?.middleName} ${studentData?.lastName}`
+                              
 ,
                             </Text>
                         </View>
                         <View style={styles.content}>
                             <Text style={styles.firstLineIndent}>
-                                This is to certify that, Mr. Gopalsing Mohansing Rathod a M.C.A - IV semester student of Peof. Ram Meghe Institute of Technology and Research, Badnera, Amravati
+                                This is to certify that,{studentData?.salutations}. {studentData?.firstName} {studentData?.middleName} {studentData?.lastName}a {studentData?.Branch}student of Peof. Ram Meghe Institute of Technology and Research, Badnera, Amravati
                                 has completed the full time industrial training
                                 from 14/12/2024 to 31/05/2025 with project titled
-                                "HVAC Technical Support" at "technoweit".He has submitted satisfactory report in the partial fulfillment of the requirement for the award of the degree of
-                                Master of Computer Application during his academic year 2024-2025.
+                                "HVAC Technical Support" at "technoweit" {studentData?.salutations == "Mr." ? 'He' : "She"}has submitted satisfactory report in the partial fulfillment of the requirement for the award of the degree of
+                                Master of Computer Application during {studentData?.salutations == "Mr." ? 'his' : "her"} academic year 2024-2025.
                             </Text>
                             {/* 22-01-2024   */}
                         </View>
