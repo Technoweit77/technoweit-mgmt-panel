@@ -13,6 +13,61 @@ const StudentDetails = () => {
   const [open, setOpen] = useState(false);
   console.log("Student Data from location state:", studentData);
 
+  const handlePayment = async () => {
+    const loadScript = (src) => {
+      return new Promise((resolve) => {
+        const script = document.createElement("script");
+        script.src = src;
+        script.onload = () => resolve(true);
+        script.onerror = () => resolve(false);
+        document.body.appendChild(script);
+      });
+    };
+
+    const res = await loadScript("https://checkout.razorpay.com/v1/checkout.js");
+
+    if (!res) {
+      alert("Razorpay SDK failed to load.");
+      return;
+    }
+
+    try {
+      const razorpay = await axios.post("http://localhost:5000/api/razorpayorder", {
+        enrollmentId: studentData.enrollments._id,
+        amount: Number(payablrAmt),
+      });
+
+      const options = {
+        key: "rzp_test_RRRqrm1ahDFT82",
+        amount: Number(payablrAmt) * 100,
+        currency: "INR",
+        name: "Isha FoodCorner",
+        description: "Order Payment",
+        order_id: razorpay.data.order.id,
+        handler: async function (response) {
+          alert("Payment Successful!");
+          dispatcher(clearCart());
+          // Optional: you can also mark the order as 'paid' on the server here
+        },
+        prefill: {
+          name: studentData?.Name || "Customer",
+          email: studentData?.Email || "example@example.com",
+          contact: studentData?.Mobile || "9999999999",
+        },
+        theme: {
+          color: "#ff5722",
+        },
+      };
+
+      const paymentObject = new window.Razorpay(options);
+      paymentObject.open();
+    } catch (error) {
+      console.error("Payment initiation failed", error);
+      alert("Payment failed");
+    }
+  };
+
+
   return (
     <>
       {/* Header and Buttons */}
@@ -70,8 +125,7 @@ const StudentDetails = () => {
 
       {/* Profile Image + Name + Phone */}
       <Box sx={{ display: "flex" }}>
-
-        <Box sx={{ display: "flex" }}>
+      <Box sx={{ display: "flex" }}>
           <Box
             component="img"
             src={`http://localhost:5000/${studentData.imageUrl}`}
@@ -141,6 +195,7 @@ const StudentDetails = () => {
               backgroundColor: '#f1f1f1',
             },
           }}
+
         >
           <Typography variant="body1" fontSize={18}>Course: {studentData.courseName}</Typography>
           <Typography variant="body1" fontSize={18}>Total Fees: {studentData.totalFees}</Typography>
@@ -161,6 +216,7 @@ const StudentDetails = () => {
       </Box>
     </>
   );
-};
+}
+  ;
 
 export default StudentDetails;

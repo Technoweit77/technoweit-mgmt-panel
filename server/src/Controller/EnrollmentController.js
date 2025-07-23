@@ -19,6 +19,7 @@ let createEnrollmentstud=async (req,res)=>{
 let fetchEnrollmentstud=async(req,res)=>{
     try{
         let result=await EnrollmentStudent.find()
+        
         res.status(200).json(result)
     }catch(error){
         res.status(500).json(error)
@@ -62,5 +63,7 @@ const updateEnrollmentstud = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
+
+
 
 export { createEnrollmentstud,fetchEnrollmentstud,deleteEnrollmentstud,updateEnrollmentstud};

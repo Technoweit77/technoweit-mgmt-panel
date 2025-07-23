@@ -1,5 +1,6 @@
 // utils/getNextSequence.js
-import Counter from "../Models/counterSchema";
+
+import { Counter } from "../Models/counterSchema.js"
 
 export async function getNextSequence(forCounterName) {
   const counter = await Counter.findOneAndUpdate(

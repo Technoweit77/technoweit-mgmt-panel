@@ -102,6 +102,59 @@ let updateStudent = async (req, res) => {
   }
 };
 
+let fetchenrolledstudents = async (req, res) => {
+  try {
+    const result = await Student.aggregate([
+      // Join with EnrollmentStudent
+      {
+        $lookup: {
+          from: "enrollmentstudents",
+          localField: "_id",
+          foreignField: "student",
+          as: "enrollments"
+        }
+      },
+      // Filter: Only students with at least one enrollment
+      {
+        $match: {
+          "enrollments.0": { $exists: true }
+        }
+      },
+      { $unwind: "$enrollments" },
+
+      // Join with Course
+      {
+        $lookup: {
+          from: "courses",
+          localField: "enrollments.course",
+          foreignField: "_id",
+          as: "courseInfo"
+        }
+      },
+      { $unwind: { path: "$courseInfo", preserveNullAndEmptyArrays: true } },
+
+      // Project required fields
+      {
+        $project: {
+          student: "$$ROOT",
+          courseName: "$courseInfo.name",
+          courseDuration: "$courseInfo.duration",
+          totalFees: "$enrollments.totalFee",
+          paidFees: "$enrollments.paidFees",
+          remainingFees: {
+            $subtract: ["$enrollments.totalFee", "$enrollments.paidFees"]
+          },
+          enrollmentStatus: "$enrollments.status",
+          joinDate: "$enrollments.joinDate"
+        }
+      }
+    ]);
+
+    res.status(200).json(result);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+};
 
 
-export { createStudent, fetchAllStudents, deleteStudent, updateStudent }
+export { createStudent, fetchAllStudents, deleteStudent, updateStudent ,fetchenrolledstudents}
