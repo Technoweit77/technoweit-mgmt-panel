@@ -3,6 +3,7 @@ import Razorpay from "razorpay";
 import crypto from "crypto";
 import shortid from "shortid";
 import { getNextSequence } from "../utils/utilsFunctions.js";
+import { EnrollmentStudent } from "../Models/EnrollmentSchema.js";
 //create feereceipt
 let createfeereceipt = async (req, res) => {
   let reqData = req.body
@@ -102,7 +103,7 @@ const RazorpayOrder = async (req, res) => {
     }
 
     const options = {
-      amount: amount * 100, // Convert to paise
+      amount: amount*100, // Convert to paise
       currency: "INR",
       receipt: shortid.generate(),
       payment_capture: 1,
@@ -114,6 +115,17 @@ const RazorpayOrder = async (req, res) => {
 
     const formattedRecNum = `RCPT-${seqNum.toString().padStart(5, "0")}`
 
+    // 1) Fetch the enrollment document
+    const enrollment = await EnrollmentStudent.findById(enrollmentId);
+    if (!enrollment) {
+      return res.status(404).json({ success: false, message: "Enrollment not found" });
+    }
+    // Update paidFee field before receipt creation
+    const updatedPaidFee = (enrollment.paidFees || 0) + amount;
+
+    await EnrollmentStudent.findByIdAndUpdate(enrollmentId, {
+      paidFees: updatedPaidFee
+    });
     const payment = new FeeReceipt({
       enrollment: enrollmentId,
       amountPaid: amount,

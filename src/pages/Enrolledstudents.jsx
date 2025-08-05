@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import CustomTable from "../components/CustomTable";
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import axios from "axios";
-import { Avatar } from "@mui/material";
+import { Avatar, Box, IconButton, Tooltip } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 const Enrolledstudent = () => {
   const [students, setStudents] = useState([]);
-
+const navigator = useNavigate();
   useEffect(() => {
     const fetchEnrolledStudents = async () => {
       try {
@@ -43,7 +45,27 @@ const Enrolledstudent = () => {
       header: "Join Date",
       Cell: ({ cell }) =>
         cell.getValue() ? new Date(cell.getValue()).toLocaleDateString() : "-"
-    }
+    },
+    {
+          header: "Actions",
+          Cell: ({ row }) => (
+            <Box display="flex" gap={1}>
+              
+              <Tooltip title="View Details">
+                <IconButton
+                  color="primary"
+                  onClick={() => {
+                    navigator("/studentdetails", {
+                      state: { ...row.original.student, ...row.original }
+                    });
+                  }}
+                >
+                  <ArrowForwardIcon />
+                </IconButton>
+              </Tooltip>
+            </Box>
+          )
+        }
   ];
 
   return (
